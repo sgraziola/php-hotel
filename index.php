@@ -45,15 +45,15 @@ $hotels = [
 
 //BONUS 1 - parcheggio
 //var_dump($_POST['parking']);
-if ($_POST['parking'] == 'on') {
-    $hotels = array_values($hotels);
+/* if ($_POST['parking'] == 'on') {
+    //  $hotels = array_values($hotels);
     foreach ($hotels as $key => $hotel) {
         if (!$hotel["parking"]) {
             unset($hotels[$key]);
             //var_dump($hotels);
         }
     }
-}
+} */
 ?>
 
 <!DOCTYPE html>
@@ -88,7 +88,16 @@ if ($_POST['parking'] == 'on') {
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         <div class="row row-cols-3 gy-3">
-            <?php foreach ($hotels as $hotel) : ?>
+            <?php
+            $parkChoice = $_POST['parking'];
+            if ($parkChoice) {
+                foreach ($hotels as $key => $hotel) {
+                    if (!$hotel['parking']) {
+                        unset($hotels[$key]);
+                    }
+                }
+            }
+            foreach ($hotels as $hotel) : ?>
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
