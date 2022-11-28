@@ -89,7 +89,7 @@ $hotels = [
         </form>
         <div class="row row-cols-3 gy-3">
             <?php
-            $parkChoice = $_POST['parking'];
+            $parkChoice = isset($_POST['parking']);
             if ($parkChoice) {
                 foreach ($hotels as $key => $hotel) {
                     if (!$hotel['parking']) {
