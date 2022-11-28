@@ -54,6 +54,34 @@ $hotels = [
         }
     }
 } */
+
+$parkChoice = isset($_POST['parking']);
+$rating = ($_POST['rating']);
+$hotelList = [];
+if ($parkChoice) {
+    foreach ($hotels as $key => $hotel) {
+        // var_dump($hotel['parking']);
+        //var_dump($hotel['vote'] >= $rating);
+        if ($hotel['parking']) {
+            array_push($hotelList, $hotels[$key]);
+            //var_dump($hotelList);
+        }
+    }
+} elseif ($rating) {
+    foreach ($hotels as $key => $hotel) {
+        if ($hotel['vote'] >= $rating) {
+            array_push($hotelList, $hotels[$key]);
+        }
+    }
+} elseif ($parkChoice && $rating) {
+    foreach ($hotels as $key => $hotel) {
+        if ($hotel['vote'] >= $rating && $hotel['vote'] >= $rating) {
+            array_push($hotelList, $hotels[$key]);
+        }
+    }
+} else {
+    $hotelList = $hotels;
+}
 ?>
 
 <!DOCTYPE html>
@@ -89,15 +117,7 @@ $hotels = [
         </form>
         <div class="row row-cols-3 gy-3">
             <?php
-            $parkChoice = isset($_POST['parking']);
-            if ($parkChoice) {
-                foreach ($hotels as $key => $hotel) {
-                    if (!$hotel['parking']) {
-                        unset($hotels[$key]);
-                    }
-                }
-            }
-            foreach ($hotels as $hotel) : ?>
+            foreach ($hotelList as $hotel) : ?>
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
