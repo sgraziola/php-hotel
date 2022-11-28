@@ -43,14 +43,17 @@ $hotels = [
 ];
 
 
-/* foreach ($hotels as $hotel) {
-    echo $hotel['name'] . '<br>';
-    echo $hotel['description'] . '<br>';
-    echo $hotel['parking'] . '<br>';
-    echo $hotel['vote'] . '<br>';
-    echo $hotel['distance_to_center'] . '<br>';
-} */
-
+//BONUS 1 - parcheggio
+//var_dump($_POST['parking']);
+if ($_POST['parking'] == 'on') {
+    $hotels = array_values($hotels);
+    foreach ($hotels as $key => $hotel) {
+        if (!$hotel["parking"]) {
+            unset($hotels[$key]);
+            //var_dump($hotels);
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -73,11 +76,7 @@ $hotels = [
 <body>
     <div class="container">
         <h1 class="my-5 pb-3 text-center">I MIGLIORI BOOLEAN HOTELS</h1>
-        <form action="index.php" method="get">
-            <div class="mb-3">
-                <label for="hotel_name" class="form-label">Cerca per nome:</label>
-                <input type="text" class="form-control" id="hotel_name" name="hotel_name">
-            </div>
+        <form class="mb-3" action="index.php" method="post">
             <div class="mb-3">
                 <label for="rating" class="form-label">Cerca per punteggio:</label>
                 <input type="number" class="form-control" id="rating" name="rating">
