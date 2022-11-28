@@ -41,6 +41,16 @@ $hotels = [
     ],
 
 ];
+
+
+foreach ($hotels as $hotel) {
+    echo $hotel['name'] . '<br>';
+    echo $hotel['description'] . '<br>';
+    echo $hotel['parking'] . '<br>';
+    echo $hotel['vote'] . '<br>';
+    echo $hotel['distance_to_center'] . '<br>';
+}
+
 ?>
 
 <!DOCTYPE html>
