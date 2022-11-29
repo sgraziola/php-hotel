@@ -58,13 +58,10 @@ $hotels = [
 $parkChoice = isset($_POST['parking']);
 $rating = ($_POST['rating']);
 $hotelList = [];
-if ($parkChoice) {
+if ($parkChoice && $rating) {
     foreach ($hotels as $key => $hotel) {
-        // var_dump($hotel['parking']);
-        //var_dump($hotel['vote'] >= $rating);
-        if ($hotel['parking']) {
+        if ($hotel['vote'] >= $rating && $hotel['vote'] >= $rating) {
             array_push($hotelList, $hotels[$key]);
-            //var_dump($hotelList);
         }
     }
 } elseif ($rating) {
@@ -73,10 +70,13 @@ if ($parkChoice) {
             array_push($hotelList, $hotels[$key]);
         }
     }
-} elseif ($parkChoice && $rating) {
+} elseif ($parkChoice) {
     foreach ($hotels as $key => $hotel) {
-        if ($hotel['vote'] >= $rating && $hotel['vote'] >= $rating) {
+        // var_dump($hotel['parking']);
+        //var_dump($hotel['vote'] >= $rating);
+        if ($hotel['parking']) {
             array_push($hotelList, $hotels[$key]);
+            //var_dump($hotelList);
         }
     }
 } else {
